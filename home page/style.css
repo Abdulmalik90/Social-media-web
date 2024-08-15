@@ -1,0 +1,29 @@
+/* body */
+body {
+    background-color: var(--bs-body-color) !important;
+    color: #198754 !important;
+}
+/* ------- body --------- */
+
+/* Button sign in & log in, In nav bar */
+@media (max-width: 991px) {
+    #sign-btns-cont {
+        justify-content: start !important;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    #login-btn {
+        margin-left: 0 !important;
+    }
+}
+/* -------------- Button sign in & log in, In nav bar  -------------- */
+
+/* card */
+.card {
+    box-shadow: 0 15px 15px 1px rgba(255,255,255, 10%);
+}
+.card:hover {
+    box-shadow: 0 15px 15px 1px rgba(255,255,255, 30%);
+}
+/*  // card // */
