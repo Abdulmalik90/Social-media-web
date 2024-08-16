@@ -92,7 +92,9 @@ logoutBtn.addEventListener("click", ()=>{
         let signinBtn = document.getElementById("signin-btn-header")
         let loginBtn = document.getElementById("login-btn")
         let logout_modal = document.getElementById("logout-modal")
+        let addPost = document.getElementById("add-post-btn")
 
+        addPost.style.display = "none"
         logoutBtn.style.display = "none"
         signinBtn.style.display = "inline"
         loginBtn.style.display = "inline"
@@ -133,7 +135,9 @@ function signIn(email, username, password, name){
         let logoutBtn = document.getElementById("logout-btn-header")
         let loginBtn = document.getElementById("login-btn")
         let signinBtn = document.getElementById("signin-btn-header")
+        let addPost = document.getElementById("add-post-btn")
 
+        addPost.style.display = "block"
         logoutBtn.style.display = "inline"
         loginBtn.style.display = "none"
         signinBtn.style.display = "none"
@@ -183,7 +187,9 @@ function logIn(username, password){
         let logoutBtn = document.getElementById("logout-btn-header")
         let loginBtn = document.getElementById("login-btn")
         let signinBtn = document.getElementById("signin-btn-header")
+        let addPost = document.getElementById("add-post-btn")
 
+        addPost.style.display = "block"
         logoutBtn.style.display = "inline"
         loginBtn.style.display = "none"
         signinBtn.style.display = "none"
@@ -215,13 +221,16 @@ function logIn(username, password){
     })
 }
 
+// set up UI function
 function setupUI(){
     let token = localStorage.getItem("token")
     if (token == null){
         let signinBtn = document.getElementById("signin-btn-header")
         let loginBtn = document.getElementById("login-btn")
         let logoutBtn = document.getElementById("logout-btn-header")
+        let addPost = document.getElementById("add-post-btn")
 
+        addPost.style.display = "none"
         logoutBtn.style.display = "none"
         signinBtn.style.display = "inline"
         loginBtn.style.display = "inline"
@@ -235,7 +244,9 @@ function setupUI(){
         let logoutBtn = document.getElementById("logout-btn-header")
         let loginBtn = document.getElementById("login-btn")
         let signinBtn = document.getElementById("signin-btn-header")
+        let addPost = document.getElementById("add-post-btn")
 
+        addPost.style.display = "block"
         logoutBtn.style.display = "inline"
         loginBtn.style.display = "none"
         signinBtn.style.display = "none"
