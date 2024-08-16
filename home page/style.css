@@ -47,3 +47,21 @@ body {
 }
 
 /* // Home page < nav bar && Profile page < nav bar // */
+
+/* sign in alert */
+#signin-alert {
+    display: none;
+}
+/* // sign in alert // */
+
+/* log in alert */
+#login-alert{
+    display: none;
+}
+/* // log in alert */
+
+/* log out button header */
+#logout-btn-header{
+    display: none;
+}
+/* // log out button header // */

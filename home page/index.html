@@ -13,7 +13,7 @@
 
 <body>
     <!-- navBar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #18211c !important;" >
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #18211c !important; position: fixed; top: 0; z-index: 1000; width: 100%;" >
         <div class="container-fluid">
             <a class="navbar-brand" href="./index.html" style="color: #198754;">Niggers Comunity</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #198754;">
@@ -31,7 +31,8 @@
                 <div class="container" id="sign-btns-cont" style="display: flex; justify-content: end;">
                     <button type="button" class="btn btn-outline-success mx-3" id="login-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Log in</button>
         
-                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signInModule">Sign in</button>
+                    <button type="button" id="signin-btn-header" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signInModule">Sign in</button>
+                    <button type="button" id="logout-btn-header" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="">Log out</button>
                 </div>
             </div>
         </div>
@@ -40,7 +41,7 @@
     
     
     <!-- container -->
-    <div class="container mt-4">
+    <div class="container" style="margin-top: 100px !important;">
         <div id="posts">
             <div class="alert alert-danger" role="alert" id="error-get-post">
                 
@@ -58,25 +59,30 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
+                                <div class="alert alert-danger" role="alert" id="login-alert">
+                                    
+                                </div>
+                            </div>
+                            <div class="mb-3">
                                 <label for="message-text" class="col-form-label">Usernam:</label>
                                 <div class="container text-center">
                                     <div class="row">
                                         <div class="col" style="margin: 0; padding: 0; width: max-content !important; background-color: aliceblue; border-radius: 10px;"><p style="text-align: center; margin: 8px; color: black;">@</p></div>
-                                        <div class="col-10"><input class="form-control" id="message-text" minlength="3" maxlength="13" required style="width: 100%;"></div>
+                                        <div class="col-10"><input class="form-control" id="usernam-input-login" minlength="3" maxlength="13" required style="width: 100%;"></div>
                                     </div>
                                 </div>
                                 
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">Password:</label>
-                                <input type="text" class="form-control" id="message-text" type="password" required>
+                                <input class="form-control" id="password-input-login" type="password" required>
                             </div>
                         </form>
                     </div>
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">log in</button>
+                        <button type="button" class="btn btn-success" id="login-button">log in</button>
                     </div>
                 </div>
             </div>
@@ -90,38 +96,43 @@
         <div class="modal-dialog">
             <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">log in</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">sign in</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
+                            <div class="alert alert-danger" role="alert" id="signin-alert">
+                                
+                            </div>
+                        </div>
+                        <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Email:</label>
-                            <input type="email" class="form-control" id="email-login" required>
+                            <input type="email" class="form-control" id="email-input-signin" required>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Usernam:</label>
                             <div class="container text-center">
                                 <div class="row">
                                     <div class="col" style="margin: 0; padding: 0; width: max-content !important; background-color: aliceblue; border-radius: 10px;"><p style="text-align: center; margin: 8px; color: black;">@</p></div>
-                                    <div class="col-10"><input class="form-control" id="message-text" minlength="3" maxlength="13" required style="width: 100%;"></div>
+                                    <div class="col-10"><input class="form-control" id="usernam-input-signin" minlength="3" maxlength="13" required style="width: 100%;"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Password:</label>
-                            <input type="text" class="form-control" id="message-text" type="password" required>
+                            <input class="form-control" id="password-input-signin" type="password" required>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Name:</label>
-                            <input class="form-control" id="message-text" minlength="2" maxlength="22" required>
+                            <input class="form-control" id="name-input-signin" minlength="2" maxlength="22" required>
                         </div>
                     </form>
                 </div>
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">sign in</button>
+                    <button type="button" class="btn btn-success" id="signin-btn">sign in</button>
                 </div>
             </div>
         </div>

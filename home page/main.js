@@ -1,5 +1,5 @@
 
-
+// get posts
 function getPosts(){
     axios.get("https://tarmeezacademy.com/api/v1/posts")
     .then((response)=>{
@@ -57,6 +57,77 @@ function getPosts(){
         setTimeout(()=>{
             errorPosts.style.display = "none"
         }, 7000)
+    })
+}
+
+// sign in
+document.getElementById("signin-btn").addEventListener("click", ()=>{
+    let email = document.getElementById("email-input-signin").value
+    let usernam = document.getElementById("usernam-input-signin").value
+    let password = document.getElementById("password-input-signin").value
+    let name = document.getElementById("name-input-signin").value
+
+    signIn(email, usernam, password, name)
+})
+
+
+// log in
+document.getElementById("login-button").addEventListener("click", ()=>{
+    let username = document.getElementById("usernam-input-login").value
+    let password = document.getElementById("password-input-login").value
+
+    logIn(username, password)
+})
+
+
+// sign in function
+function signIn(email, username, password, name){
+    axios.post("https://tarmeezacademy.com/api/v1/register",{
+        "email":`${email}`,
+        "username": `${username}`, 
+        "password":`${password}`,
+        "name":`${name}`
+    })
+    .then((response)=>{
+        console.log(response)
+        let token = response.data.token
+        localStorage.setItem("authToken", token)
+    }).catch((error)=>{
+        let alertSignIn = document.getElementById("signin-alert")
+        alertSignIn.innerHTML = `${error.response.data.message}`
+        alertSignIn.style.display = "block"
+        setTimeout(()=>{
+            alertSignIn.style.display = "none"
+        }, 10000)
+    })
+}
+
+// log in function
+function logIn(username, password){
+    axios.post("https://tarmeezacademy.com/api/v1/login",{
+        
+        "username": `${username}`, 
+        "password":`${password}`,
+        
+    })
+    .then((response)=>{
+        console.log(response)
+        let token = response.data.token
+
+        let logoutBtn = document.getElementById("logout-btn-header")
+        let loginBtn = document.getElementById("login-btn")
+        let signinBtn = document.getElementById("signin-btn-header")
+
+        logoutBtn.style.display = "inline"
+        loginBtn.style.display = "none"
+        signinBtn.style.display = "none"
+    }).catch((error)=>{
+        let alertSignIn = document.getElementById("login-alert")
+        alertSignIn.innerHTML = `${error.response.data.message}`
+        alertSignIn.style.display = "block"
+        setTimeout(()=>{
+            alertSignIn.style.display = "none"
+        }, 10000)
     })
 }
 
