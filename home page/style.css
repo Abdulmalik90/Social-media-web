@@ -22,6 +22,12 @@ body {
 /* card */
 .card {
     box-shadow: 0 15px 15px 1px rgba(255,255,255, 10%);
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 700px;
+    background-color: #18211c !important;
+    color: white !important;
+    border: 1px white solid !important;
 }
 .card:hover {
     box-shadow: 0 15px 15px 1px rgba(255,255,255, 30%);
