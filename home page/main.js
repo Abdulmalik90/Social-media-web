@@ -1,7 +1,7 @@
 
 // get posts
 function getPosts(){
-    axios.get("https://tarmeezacademy.com/api/v1/posts")
+    axios.get("https://tarmeezacademy.com/api/v1/posts?limit=50")
     .then((response)=>{
         let posts = response.data.data
         
@@ -101,6 +101,15 @@ logoutBtn.addEventListener("click", ()=>{
         const modalInstance2 = bootstrap.Modal.getInstance(logout_modal)
         modalInstance2.hide()
 
+        let alertSuccess = document.getElementById("alert-sign-log")
+        alertSuccess.classList.remove("alert-success")
+        alertSuccess.classList.add("alert-danger")
+        alertSuccess.innerHTML = "You have successfully logged out!!"
+        alertSuccess.style.display = "block"
+        setTimeout(()=>{
+            alertSuccess.style.display = "none"
+        }, 10000)
+
         let profileA = document.getElementById("profile-a")
         profileA.classList.add("disabled")
     })
@@ -136,6 +145,8 @@ function signIn(email, username, password, name){
         modalInstance.hide()
 
         let alertSuccess = document.getElementById("alert-sign-log")
+        alertSuccess.classList.add("alert-success")
+        alertSuccess.classList.remove("alert-danger")
         alertSuccess.innerHTML = "Registration completed successfully!!"
         alertSuccess.style.display = "block"
         setTimeout(()=>{
@@ -184,6 +195,8 @@ function logIn(username, password){
         modalInstance.hide()
 
         let alertSuccess = document.getElementById("alert-sign-log")
+        alertSuccess.classList.add("alert-success")
+        alertSuccess.classList.remove("alert-danger")
         alertSuccess.innerHTML = "You have been logged in successfully!!"
         alertSuccess.style.display = "block"
         setTimeout(()=>{
@@ -214,8 +227,8 @@ function setupUI(){
         loginBtn.style.display = "inline"
     
         localStorage.clear()
-        
 
+        
         let profileA = document.getElementById("profile-a")
         profileA.classList.add("disabled")
     } else{
