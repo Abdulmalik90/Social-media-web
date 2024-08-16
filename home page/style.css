@@ -33,3 +33,17 @@ body {
     box-shadow: 0 15px 15px 1px rgba(255,255,255, 30%);
 }
 /*  // card // */
+
+/*  alert error get post */
+#error-get-post {
+    display: none;
+}
+/*  // alert error get post // */
+
+/* Home page < nav bar && Profile page < nav bar */
+
+#home-a:hover, #profile-a:hover {
+    color: white !important;
+}
+
+/* // Home page < nav bar && Profile page < nav bar // */
