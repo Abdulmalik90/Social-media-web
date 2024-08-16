@@ -65,3 +65,9 @@ body {
     display: none;
 }
 /* // log out button header // */
+
+/* disabled class */
+.disabled {
+    color: grey !important;
+}
+/* // disabled class // */

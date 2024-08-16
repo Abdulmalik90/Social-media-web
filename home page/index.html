@@ -25,23 +25,33 @@
                         <a class="nav-link active" aria-current="page" href="./index.html" style="color: #198754; " id="home-a">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: #198754;" id="profile-a">Profile</a>
+                        <a class="nav-link disabled" href="#" style="color: #198754;" id="profile-a">Profile</a>
                     </li>
                 </ul>
                 <div class="container" id="sign-btns-cont" style="display: flex; justify-content: end;">
-                    <button type="button" class="btn btn-outline-success mx-3" id="login-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Log in</button>
+                    <button type="button" class="btn btn-outline-success mx-3" id="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
         
                     <button type="button" id="signin-btn-header" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signInModule">Sign in</button>
-                    <button type="button" id="logout-btn-header" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="">Log out</button>
+                    <button type="button" id="logout-btn-header" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#logout-modal">Log out</button>
                 </div>
             </div>
         </div>
     </nav>
     <!-- // navBar // -->
-    
+
+    <!-- Success alert -->
+    <div style=" position: fixed; z-index: 1000; width: 100%; display: flex;">
+        
+        <div id="alert-sign-log" class="alert alert-success" role="alert" style="margin: 10px auto; width: 80%; display: none;" >
+                sgdfgs
+        </div>
+        
+    </div>
+    <!-- // Success alert // -->
     
     <!-- container -->
     <div class="container" style="margin-top: 100px !important;">
+        
         <div id="posts">
             <div class="alert alert-danger" role="alert" id="error-get-post">
                 
@@ -49,7 +59,7 @@
         </div>
 
         <!-- log in model -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content bg-dark">
                     <div class="modal-header">
@@ -140,6 +150,28 @@
 </div>
 
     <!-- // sign in modul // -->
+    
+    <!-- log out modal -->
+
+    <div class="modal fade" id="logout-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Log out</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to log out?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="confirmation-logout">Log out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- // log out modal // -->
     
     <!-- // container // -->
 </body>

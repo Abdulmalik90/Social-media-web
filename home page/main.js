@@ -16,6 +16,9 @@ function getPosts(){
             if (String(post.body) == "null"){
                 post.body = ""
             }
+            if (String(post.author.profile_image) == "[object Object]"){
+                post.author.profile_image = "https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg"
+            }
 
             
             
@@ -51,7 +54,7 @@ function getPosts(){
         }
     }).catch((error) =>{
         let errorPosts = document.getElementById("error-get-post")
-        errorPosts.innerHTML = `${error}, please refresh the page`
+        errorPosts.innerHTML = `${error}, please refresh the page or try later!!`
         errorPosts.style.display = "block"
 
         setTimeout(()=>{
@@ -59,6 +62,8 @@ function getPosts(){
         }, 7000)
     })
 }
+
+
 
 // sign in
 document.getElementById("signin-btn").addEventListener("click", ()=>{
@@ -79,6 +84,28 @@ document.getElementById("login-button").addEventListener("click", ()=>{
     logIn(username, password)
 })
 
+// log out
+let logoutBtn = document.getElementById("logout-btn-header")
+logoutBtn.addEventListener("click", ()=>{
+
+    document.getElementById("confirmation-logout").addEventListener("click", ()=>{
+        let signinBtn = document.getElementById("signin-btn-header")
+        let loginBtn = document.getElementById("login-btn")
+        let logout_modal = document.getElementById("logout-modal")
+
+        logoutBtn.style.display = "none"
+        signinBtn.style.display = "inline"
+        loginBtn.style.display = "inline"
+    
+        localStorage.clear()
+        const modalInstance2 = bootstrap.Modal.getInstance(logout_modal)
+        modalInstance2.hide()
+
+        let profileA = document.getElementById("profile-a")
+        profileA.classList.add("disabled")
+    })
+})
+
 
 // sign in function
 function signIn(email, username, password, name){
@@ -91,7 +118,33 @@ function signIn(email, username, password, name){
     .then((response)=>{
         console.log(response)
         let token = response.data.token
-        localStorage.setItem("authToken", token)
+
+        let signInModal = document.getElementById("signInModule")
+
+        let logoutBtn = document.getElementById("logout-btn-header")
+        let loginBtn = document.getElementById("login-btn")
+        let signinBtn = document.getElementById("signin-btn-header")
+
+        logoutBtn.style.display = "inline"
+        loginBtn.style.display = "none"
+        signinBtn.style.display = "none"
+
+        localStorage.setItem("token", JSON.stringify(token))
+        localStorage.setItem("User", JSON.stringify(response.data.user))
+
+        const modalInstance = bootstrap.Modal.getInstance(signInModal)
+        modalInstance.hide()
+
+        let alertSuccess = document.getElementById("alert-sign-log")
+        alertSuccess.innerHTML = "Registration completed successfully!!"
+        alertSuccess.style.display = "block"
+        setTimeout(()=>{
+            alertSuccess.style.display = "none"
+        }, 10000)
+
+        let profileA = document.getElementById("profile-a")
+        profileA.classList.remove("disabled")
+
     }).catch((error)=>{
         let alertSignIn = document.getElementById("signin-alert")
         alertSignIn.innerHTML = `${error.response.data.message}`
@@ -114,6 +167,8 @@ function logIn(username, password){
         console.log(response)
         let token = response.data.token
 
+        let logInModal = document.getElementById("loginModal")
+
         let logoutBtn = document.getElementById("logout-btn-header")
         let loginBtn = document.getElementById("login-btn")
         let signinBtn = document.getElementById("signin-btn-header")
@@ -121,6 +176,22 @@ function logIn(username, password){
         logoutBtn.style.display = "inline"
         loginBtn.style.display = "none"
         signinBtn.style.display = "none"
+
+        localStorage.setItem("token", JSON.stringify(token))
+        localStorage.setItem("user", JSON.stringify(response.data.user))
+
+        const modalInstance = bootstrap.Modal.getInstance(logInModal)
+        modalInstance.hide()
+
+        let alertSuccess = document.getElementById("alert-sign-log")
+        alertSuccess.innerHTML = "You have been logged in successfully!!"
+        alertSuccess.style.display = "block"
+        setTimeout(()=>{
+            alertSuccess.style.display = "none"
+        }, 10000)
+
+        let profileA = document.getElementById("profile-a")
+        profileA.classList.remove("disabled")
     }).catch((error)=>{
         let alertSignIn = document.getElementById("login-alert")
         alertSignIn.innerHTML = `${error.response.data.message}`
@@ -131,5 +202,36 @@ function logIn(username, password){
     })
 }
 
+function setupUI(){
+    let token = localStorage.getItem("token")
+    if (token == null){
+        let signinBtn = document.getElementById("signin-btn-header")
+        let loginBtn = document.getElementById("login-btn")
+        let logoutBtn = document.getElementById("logout-btn-header")
 
+        logoutBtn.style.display = "none"
+        signinBtn.style.display = "inline"
+        loginBtn.style.display = "inline"
+    
+        localStorage.clear()
+        
+
+        let profileA = document.getElementById("profile-a")
+        profileA.classList.add("disabled")
+    } else{
+        let logoutBtn = document.getElementById("logout-btn-header")
+        let loginBtn = document.getElementById("login-btn")
+        let signinBtn = document.getElementById("signin-btn-header")
+
+        logoutBtn.style.display = "inline"
+        loginBtn.style.display = "none"
+        signinBtn.style.display = "none"
+
+        let profileA = document.getElementById("profile-a")
+        profileA.classList.remove("disabled")
+        
+    }
+}
+
+setupUI()
 getPosts()
