@@ -89,19 +89,17 @@ let logoutBtn = document.getElementById("logout-btn-header")
 logoutBtn.addEventListener("click", ()=>{
 
     document.getElementById("confirmation-logout").addEventListener("click", ()=>{
-        let signinBtn = document.getElementById("signin-btn-header")
-        let loginBtn = document.getElementById("login-btn")
-        let logout_modal = document.getElementById("logout-modal")
-        let addPost = document.getElementById("add-post-btn")
 
-        addPost.style.display = "none"
-        logoutBtn.style.display = "none"
-        signinBtn.style.display = "inline"
-        loginBtn.style.display = "inline"
+        let logout_modal = document.getElementById("logout-modal")
+
     
         localStorage.clear()
+
+        setupUI()
+
         const modalInstance2 = bootstrap.Modal.getInstance(logout_modal)
         modalInstance2.hide()
+
 
         let alertSuccess = document.getElementById("alert-sign-log")
         alertSuccess.classList.remove("alert-success")
@@ -112,8 +110,8 @@ logoutBtn.addEventListener("click", ()=>{
             alertSuccess.style.display = "none"
         }, 10000)
 
-        let profileA = document.getElementById("profile-a")
-        profileA.classList.add("disabled")
+        // let profileA = document.getElementById("profile-a")
+        // profileA.classList.add("disabled")
     })
 })
 
@@ -131,20 +129,12 @@ function signIn(email, username, password, name){
         let token = response.data.token
 
         let signInModal = document.getElementById("signInModule")
-
-        let logoutBtn = document.getElementById("logout-btn-header")
-        let loginBtn = document.getElementById("login-btn")
-        let signinBtn = document.getElementById("signin-btn-header")
-        let addPost = document.getElementById("add-post-btn")
-
-        addPost.style.display = "block"
-        logoutBtn.style.display = "inline"
-        loginBtn.style.display = "none"
-        signinBtn.style.display = "none"
-
+        
         localStorage.setItem("token", JSON.stringify(token))
         localStorage.setItem("User", JSON.stringify(response.data.user))
-
+        
+        setupUI()
+        
         const modalInstance = bootstrap.Modal.getInstance(signInModal)
         modalInstance.hide()
 
@@ -156,9 +146,6 @@ function signIn(email, username, password, name){
         setTimeout(()=>{
             alertSuccess.style.display = "none"
         }, 10000)
-
-        let profileA = document.getElementById("profile-a")
-        profileA.classList.remove("disabled")
 
     }).catch((error)=>{
         let alertSignIn = document.getElementById("signin-alert")
@@ -184,18 +171,10 @@ function logIn(username, password){
 
         let logInModal = document.getElementById("loginModal")
 
-        let logoutBtn = document.getElementById("logout-btn-header")
-        let loginBtn = document.getElementById("login-btn")
-        let signinBtn = document.getElementById("signin-btn-header")
-        let addPost = document.getElementById("add-post-btn")
-
-        addPost.style.display = "block"
-        logoutBtn.style.display = "inline"
-        loginBtn.style.display = "none"
-        signinBtn.style.display = "none"
-
         localStorage.setItem("token", JSON.stringify(token))
         localStorage.setItem("user", JSON.stringify(response.data.user))
+
+        setupUI()
 
         const modalInstance = bootstrap.Modal.getInstance(logInModal)
         modalInstance.hide()
@@ -209,8 +188,6 @@ function logIn(username, password){
             alertSuccess.style.display = "none"
         }, 10000)
 
-        let profileA = document.getElementById("profile-a")
-        profileA.classList.remove("disabled")
     }).catch((error)=>{
         let alertSignIn = document.getElementById("login-alert")
         alertSignIn.innerHTML = `${error.response.data.message}`
