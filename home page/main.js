@@ -75,6 +75,58 @@ function getPosts(){
     })
 }
 
+// create a new post
+function createPost(){
+    let title = document.getElementById("recipient-name").value
+    let message = document.getElementById("message-text").value
+    let token = JSON.parse(localStorage.getItem("token"))
+
+    let image = document.getElementById("upload-image").value
+    console.log(image)
+    if (title == "" || message == "" || image == ""){
+        let post_alert = document.getElementById("post-alert")
+        post_alert.innerHTML = `Please enter title and message`
+        post_alert.style.display = "block"
+        setTimeout(()=>{
+            post_alert.style.display = "none"
+        }, 10000)
+        return 
+    }
+    const form = new FormData()
+    form.append("title", title)
+    form.append("body", message)
+    form.append("image", image)
+    
+
+    axios.post("https://tarmeezacademy.com/api/v1/posts", {
+        form
+    },{
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(()=>{
+        let postModal = document.getElementById("add-post-modal")
+        const modalInstance = bootstrap.Modal.getInstance(postModal)
+        modalInstance.hide()
+        getPosts()
+    })
+    .catch((error)=>{
+        let alertSuccess = document.getElementById("alert-sign-log")
+        alertSuccess.classList.remove("alert-success")
+        alertSuccess.classList.add("alert-danger")
+        alertSuccess.innerHTML = `<button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>  ${error}`
+        alertSuccess.style.display = "block"
+        setTimeout(()=>{
+            alertSuccess.style.display = "none"
+        }, 10000)
+    })
+}
+
+// click post
+document.getElementById("post-btn").addEventListener("click",()=>{
+    createPost()
+})
 
 
 // sign in
