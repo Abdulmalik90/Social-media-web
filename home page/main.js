@@ -1,7 +1,7 @@
 
 // get posts
 function getPosts(){
-    axios.get("https://tarmeezacademy.com/api/v1/posts?limit=150")
+    axios.get("https://tarmeezacademy.com/api/v1/posts?limit=10")
     .then((response)=>{
         let posts = response.data.data
         
@@ -116,7 +116,7 @@ logoutBtn.addEventListener("click", ()=>{
         let alertSuccess = document.getElementById("alert-sign-log")
         alertSuccess.classList.remove("alert-success")
         alertSuccess.classList.add("alert-danger")
-        alertSuccess.innerHTML = `You have successfully logged out!!`
+        alertSuccess.innerHTML = `<button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>  You have successfully logged out!!`
         alertSuccess.style.display = "block"
         setTimeout(()=>{
             alertSuccess.style.display = "none"
@@ -143,7 +143,7 @@ function signIn(email, username, password, name){
         let signInModal = document.getElementById("signInModule")
         
         localStorage.setItem("token", JSON.stringify(token))
-        localStorage.setItem("User", JSON.stringify(response.data.user))
+        localStorage.setItem("user", JSON.stringify(response.data.user))
         
         setupUI()
         
@@ -153,7 +153,7 @@ function signIn(email, username, password, name){
         let alertSuccess = document.getElementById("alert-sign-log")
         alertSuccess.classList.add("alert-success")
         alertSuccess.classList.remove("alert-danger")
-        alertSuccess.innerHTML = `Registration completed successfully!!`
+        alertSuccess.innerHTML = `<button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>  Registration completed successfully!!`
         alertSuccess.style.display = "block"
         setTimeout(()=>{
             alertSuccess.style.display = "none"
@@ -195,7 +195,7 @@ function logIn(username, password){
         alertSuccess.classList.add("alert-success")
         alertSuccess.classList.remove("alert-danger")
         // todo : add close button of the alert
-        alertSuccess.innerHTML = `You have been logged in successfully!!`
+        alertSuccess.innerHTML = `<button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button> You have been logged in successfully!!`
         alertSuccess.style.display = "block"
         setTimeout(()=>{
             alertSuccess.style.display = "none"
@@ -230,6 +230,19 @@ function setupUI(){
         
         let profileA = document.getElementById("profile-a")
         profileA.classList.add("disabled")
+
+        // rmove the username and his image profile
+        let userDiv = document.getElementById("user-div")
+        
+        userDiv.style.display = "none"
+
+        // add profile image and username
+        userDiv.innerHTML = `
+            <a style="cursor: pointer;">
+                <img src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" id="profile-img" alt="profile image" style="width: 40px; height: 40px; border-radius: 50px; border: 1px #198754 solid;">
+                <b style="font-size: 20px; color: rgb(178, 178, 178);">@</b><span style="font-size: 20px;" id="username-nav">Username</span>
+            </a>
+        `
     } else{
         let logoutBtn = document.getElementById("logout-btn-header")
         let loginBtn = document.getElementById("login-btn")
@@ -243,8 +256,39 @@ function setupUI(){
 
         let profileA = document.getElementById("profile-a")
         profileA.classList.remove("disabled")
+
+        // add the username and his image profile
+        let userDiv = document.getElementById("user-div")
+        let userInfo = JSON.parse(localStorage.getItem("user"))
+        console.log(userInfo)
+
+        userDiv.style.display = "block"
+
+        // add profile image and username
+        console.log(String(userInfo.profile_image))
+        
+        if (String(userInfo.profile_image) == '[object Object]'){
+            userInfo.profile_image = "https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg"
+        } 
+
+        userDiv.innerHTML = `
+            <a style="cursor: pointer;">
+                <img src="${userInfo.profile_image}" id="profile-img" alt="profile image" style="width: 40px; height: 40px; border-radius: 50px; border: 1px #198754 solid;">
+                <b style="font-size: 20px; color: rgb(178, 178, 178);">@</b><span style="font-size: 20px;" id="username-nav">${userInfo.username}</span>
+            </a>
+        `
+        document.getElementById("usernam-input-post").value = `${userInfo.username}`
         
     }
+}
+
+//function hide the alert 
+
+function hideAlert(){
+    let alert = document.getElementById("alert-sign-log")
+
+    alert.style.display = "none"
+
 }
 
 setupUI()

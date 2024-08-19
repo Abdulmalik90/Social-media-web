@@ -71,3 +71,10 @@ body {
     color: grey !important;
 }
 /* // disabled class // */
+
+/* hover username-nav */
+#user-div:hover{
+    color: white;
+    cursor: pointer;
+}
+/* // hover username-nav // */
