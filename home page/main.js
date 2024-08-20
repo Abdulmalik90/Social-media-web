@@ -20,7 +20,7 @@ function getPosts(){
 
             
             
-
+            
             postsDiv.innerHTML += `
             <div class="card mb-3">
                 <div class="card-header" style="border-bottom: 0.1px white solid;">
@@ -32,7 +32,7 @@ function getPosts(){
                     <img src="${post.image}" alt="" style="width: 100%; max-height: 2000px; max-width: 2000px;">
                 </div>
                 <div class="card-time">
-                    <h6 class="mx-3 mt-2 pt-0" style="color: rgb(155, 155, 155);">${post.created_at}</h5>
+                    <h6 class="mx-3 mt-2 pt-0" style="color: rgb(155, 155, 155);">${post.created_at}</h6>
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">${post.title}</h3>
@@ -81,45 +81,56 @@ function createPost(){
     let message = document.getElementById("message-text").value
     let token = JSON.parse(localStorage.getItem("token"))
 
-    let image = document.getElementById("upload-image").value
-    console.log(image)
+    let post_alert = document.getElementById("post-alert")
+
+    let image = document.getElementById("upload-image").files[0]
+    let imageSize = (image.size / 1024).toFixed(2)
+
     if (title == "" || message == "" || image == ""){
-        let post_alert = document.getElementById("post-alert")
-        post_alert.innerHTML = `Please enter title and message`
+        post_alert.innerHTML = `Please enter title and message and upload an image!!`
         post_alert.style.display = "block"
         setTimeout(()=>{
             post_alert.style.display = "none"
         }, 10000)
         return 
     }
-    const form = new FormData()
-    form.append("title", title)
-    form.append("body", message)
-    form.append("image", image)
+
+    if (imageSize >= 800){
+        post_alert.innerHTML = `Please upload image less than 800kb!!`
+        post_alert.style.display = "block"
+        setTimeout(()=>{
+            post_alert.style.display = "none"
+        }, 10000)
+        return 
+    }
+
+    let formData = new FormData()
+    formData.append("title", title)
+    formData.append("body", message)
+    formData.append("image", image)
     
 
-    axios.post("https://tarmeezacademy.com/api/v1/posts", {
-        form
-    },{
+    axios.post("https://tarmeezacademy.com/api/v1/posts",formData,{
         headers: {
+            'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${token}`
         }
     })
-    .then(()=>{
+    .then((response)=>{
+        console.log(response)
+        
         let postModal = document.getElementById("add-post-modal")
         const modalInstance = bootstrap.Modal.getInstance(postModal)
         modalInstance.hide()
         getPosts()
     })
     .catch((error)=>{
-        let alertSuccess = document.getElementById("alert-sign-log")
-        alertSuccess.classList.remove("alert-success")
-        alertSuccess.classList.add("alert-danger")
-        alertSuccess.innerHTML = `<button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>  ${error}`
-        alertSuccess.style.display = "block"
+        post_alert.innerHTML = `Error (${error})`
+        post_alert.style.display = "block"
         setTimeout(()=>{
-            alertSuccess.style.display = "none"
+            post_alert.style.display = "none"
         }, 10000)
+        return 
     })
 }
 
@@ -135,8 +146,9 @@ document.getElementById("signin-btn").addEventListener("click", ()=>{
     let usernam = document.getElementById("usernam-input-signin").value
     let password = document.getElementById("password-input-signin").value
     let name = document.getElementById("name-input-signin").value
+    let image = document.getElementById("profile-img-input").files[0]
 
-    signIn(email, usernam, password, name)
+    signIn(email, usernam, password, name, image)
 })
 
 
@@ -181,21 +193,51 @@ logoutBtn.addEventListener("click", ()=>{
 
 
 // sign in function
-function signIn(email, username, password, name){
-    axios.post("https://tarmeezacademy.com/api/v1/register",{
-        "email":`${email}`,
-        "username": `${username}`, 
-        "password":`${password}`,
-        "name":`${name}`
+function signIn(email, username, password, name, image){
+    // make sure inputs are not empty
+    if(email == "" || username == "" || password == "" || name == "" || image == ""){
+        let alertSignIn = document.getElementById("signin-alert")
+        alertSignIn.innerHTML = `The inforamtion are not complited!!`
+        alertSignIn.style.display = "block"
+        setTimeout(()=>{
+            alertSignIn.style.display = "none"
+        }, 10000)
+        return
+    }
+
+    // make sure the profile image size is not greater than 800kb
+    let imageSize = (image.size / 1024).toFixed(2)
+    if (imageSize >= 800){
+        let alertSignIn = document.getElementById("signin-alert")
+        alertSignIn.innerHTML = `The profile image size is greater than 800kb, please upload image less than 800kb`
+        alertSignIn.style.display = "block"
+        setTimeout(()=>{
+            alertSignIn.style.display = "none"
+        }, 15000)
+        return
+    }
+
+    // form data 
+    let formData = new FormData()
+    formData.append("email", email)
+    formData.append("username", username)
+    formData.append("password", password)
+    formData.append("name", name)
+    formData.append("image", image)
+    console.log(image)
+    fetch("https://tarmeezacademy.com/api/v1/register",{
+        method: "POST",
+        body: formData
     })
-    .then((response)=>{
-        console.log(response)
-        let token = response.data.token
+    .then((response)=> response.json())
+    .then((data)=>{
+        console.log(data)
+        let token = data.token
 
         let signInModal = document.getElementById("signInModule")
         
         localStorage.setItem("token", JSON.stringify(token))
-        localStorage.setItem("user", JSON.stringify(response.data.user))
+        localStorage.setItem("user", JSON.stringify(data.user))
         
         setupUI()
         
@@ -211,13 +253,26 @@ function signIn(email, username, password, name){
             alertSuccess.style.display = "none"
         }, 10000)
 
-    }).catch((error)=>{
-        let alertSignIn = document.getElementById("signin-alert")
-        alertSignIn.innerHTML = `${error.response.data.message}`
+    }).catch(function(error) {
+        
+        console.log('Error occurred:', error);
+        let alertSignIn = document.getElementById("signin-alert");
+        if (error.response) {
+
+            if (error.response.status == 422) {
+                alertSignIn.innerHTML = `Username is already taken. Please choose another one.`;
+            } else {
+                alertSignIn.innerHTML = `An error occurred. Please choose another one.`;
+            }
+            
+        } else {
+            alertSignIn.innerHTML = `An unknown error occurred.`;
+        }
+
         alertSignIn.style.display = "block"
         setTimeout(()=>{
             alertSignIn.style.display = "none"
-        }, 10000)
+        }, 15000)
     })
 }
 
@@ -317,7 +372,7 @@ function setupUI(){
         userDiv.style.display = "block"
 
         // add profile image and username
-        console.log(String(userInfo.profile_image))
+        console.log(userInfo.profile_image)
         
         if (String(userInfo.profile_image) == '[object Object]'){
             userInfo.profile_image = "https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg"
