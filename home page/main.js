@@ -1,7 +1,7 @@
 
 // get posts
 function getPosts(reload = true, page = 1){
-    axios.get(`https://tarmeezacademy.com/api/v1/posts?page=${page}?limit=3`)
+    axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=20&page=${page}`)
     .then((response)=>{
         let posts = response.data.data
         lastPage = response.data.meta.last_page
@@ -479,14 +479,15 @@ function refreshPosts(page){
 setupUI()
 
 let page = 1
-let lastPage = 2
+let lastPage = 1
 getPosts(true, 1)
 
 window.addEventListener("scroll", ()=>{
 
     const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
     if (endOfPage && page < lastPage){
-        page++
+        page = page + 1
+        console.log(page)
         getPosts(false, page)
     }
 })
