@@ -1,7 +1,7 @@
 
 // get posts
 function getPosts(reload = true, page = 1){
-    axios.get(`https://tarmeezacademy.com/api/v1/posts?page=${page}`)
+    axios.get(`https://tarmeezacademy.com/api/v1/posts?page=${page}?limit=3`)
     .then((response)=>{
         let posts = response.data.data
         lastPage = response.data.meta.last_page
