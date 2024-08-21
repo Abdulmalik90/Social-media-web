@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- 7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./home page/style.css">
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./node_modules/axios/dist/axios.min.js"></script>
-    <title>Home</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./../node_modules/axios/dist/axios.min.js"></script>
+    <title>Post Details</title>
 </head>
-
 <body>
     <!-- navBar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #18211c !important; position: fixed; top: 0; z-index: 1000; width: 100%;">
@@ -55,51 +54,42 @@
         
     </div>
     <!-- // Success alert // -->
-    
-    <!-- container -->
-    <div class="container" style="margin-top: 100px !important;">
-        
-        <div id="posts">
-            <div class="alert alert-danger" role="alert" id="error-get-post">
-            </div>
-        </div>
 
-        <!-- log in model -->
-        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content bg-dark">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">log in</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <div class="alert alert-danger" role="alert" id="login-alert">
-                                    
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Usernam:</label>
-                                <div class="container text-center">
-                                    <div class="row">
-                                        <div class="col" style="margin: 0; padding: 0; width: max-content !important; background-color: aliceblue; border-radius: 10px;"><p style="text-align: center; margin: 8px; color: black;">@</p></div>
-                                        <div class="col-10"><input class="form-control" id="usernam-input-login" minlength="3" maxlength="13" required style="width: 100%;"></div>
-                                    </div>
-                                </div>
+    <!-- log in model -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">log in</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <div class="alert alert-danger" role="alert" id="login-alert">
                                 
                             </div>
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Password:</label>
-                                <input class="form-control" id="password-input-login" type="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Usernam:</label>
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col" style="margin: 0; padding: 0; width: max-content !important; background-color: aliceblue; border-radius: 10px;"><p style="text-align: center; margin: 8px; color: black;">@</p></div>
+                                    <div class="col-10"><input class="form-control" id="usernam-input-login" minlength="3" maxlength="13" required style="width: 100%;"></div>
+                                </div>
                             </div>
-                        </form>
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success" id="login-button">log in</button>
-                    </div>
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Password:</label>
+                            <input class="form-control" id="password-input-login" type="password" required>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="login-button">log in</button>
                 </div>
             </div>
         </div>
@@ -107,7 +97,6 @@
     <!-- // log in modul // -->
 
     <!-- sign in modul -->
-
     <div class="modal fade" id="signInModule" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content bg-dark">
@@ -157,12 +146,9 @@
             </div>
         </div>
     </div>
-</div>
-
     <!-- // sign in modul // -->
-    
-    <!-- log out modal -->
 
+    <!-- log out modal -->
     <div class="modal fade" id="logout-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content bg-dark">
@@ -180,66 +166,52 @@
             </div>
         </div>
     </div>
-
     <!-- // log out modal // -->
     
-    <!-- // container // -->
-    
-    <!-- add post button -->
-    <button type="button" data-bs-toggle="modal" data-bs-target="#add-post-modal" class="btn btn-success" id="add-post-btn" style="border-radius: 70px; padding: 5px; position: fixed; z-index: 1000; bottom: 10px; right: 10px; border: 1px solid black; display: none;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-        </svg>
-    </button>
-    <!-- // add post button // -->
+    <!-- post & comments container -->
+    <div class="container text-center" style="margin-top: 150px;">
+        <div class="row">
+            <div class="col-7" style="background-color: red;">
+                <div id="mainPost">
+                    <div class="card mb-3">
+                        <div class="card-header" style="border-bottom: 0.1px white solid;">
+                            <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="" style="width: 30px; height: 30px;">
+                            <b>@</b>Hello
+                        </div>
+                        
+                        <div class="img mt-1">
+                            <img src="https://images.tarmeezacademy.com/posts/7qBV10OKTipdMye.jpg" alt="" style="width: 100%; max-height: 2000px; max-width: 2000px;">
+                        </div>
+                        <div class="card-time">
+                            <h6 class="mx-3 mt-2 pt-0" style="color: rgb(155, 155, 155);">5 min ago</h6>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">${post.title}</h3>
+                            <p class="card-text">${post.body}</p>
+                            <hr>
+                        </div>
+                        <div class="container mb-3" style="display: flex; justify-content: space-between;">
+                            
+                            <div id="post-tags-div${post.id}">
+                                <button style="background-color: gray; color: white; border: none; border-radius: 10px">hello world </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="background-color: white;">
+                
+            </div>
+            <div class="col-4" style="background-color: green;">
+                <div id="comments">
 
-    <!-- create post modal -->
-    <div class="modal fade" id="add-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-        <div class="modal-dialog">
-            <div class="modal-content bg-dark">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">New Post</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <div class="alert alert-danger" role="alert" id="post-alert" style="display: none;">
-                                
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Usernam:</label>
-                            <div class="container text-center">
-                                <div class="row">
-                                    <div class="col" style="margin: 0; padding: 0; width: max-content !important; background-color: aliceblue; border-radius: 10px;"><p style="text-align: center; margin: 8px; color: black;">@</p></div>
-                                    <div class="col-10"><input class="form-control" id="usernam-input-post" minlength="3" maxlength="13" readonly style="width: 100%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="upload-image" class="form-label">Upload Image:<span style="font-size: 13px; color: red; margin-left: 5px; padding: 5px; background-color: yellow; border-radius: 20px;">(less than 800kb)</span></label>
-                            <input class="form-control" type="file" id="upload-image" accept=".jpg, .jpeg, .png">
-                        </div>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Title:</label>
-                            <input type="text" class="form-control" id="recipient-name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea class="form-control" id="message-text" required></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="post-btn" type="submit" class="btn btn-success">Post</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- // create post modal // -->
+
 </body>
-<script src="./home page/main.js"></script>
-<script src="./GeneralSetup.js"></script>
+<script src="./main.js"></script>
+<script src="./../GeneralSetup.js"></script>
+<!-- 7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777 -->
 </html>

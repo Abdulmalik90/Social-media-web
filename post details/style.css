@@ -1,11 +1,10 @@
-/* body */
+
+/* 777777777777777777777777777777777777777777777777777777777777777777777777777777777777 */
 body {
     background-color: var(--bs-body-color) !important;
     color: #198754 !important;
 }
-/* ------- body --------- */
 
-/* Button sign in & log in, In nav bar */
 @media (max-width: 991px) {
     #sign-btns-cont {
         justify-content: start !important;
@@ -17,28 +16,6 @@ body {
         margin-left: 0 !important;
     }
 }
-/* -------------- Button sign in & log in, In nav bar  -------------- */
-
-/* card */
-.card {
-    box-shadow: 0 15px 15px 1px rgba(255,255,255, 10%);
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 700px;
-    background-color: #18211c !important;
-    color: white !important;
-    border: 1px white solid !important;
-}
-.card:hover {
-    box-shadow: 0 15px 15px 1px rgba(255,255,255, 30%);
-}
-/*  // card // */
-
-/*  alert error get post */
-#error-get-post {
-    display: none;
-}
-/*  // alert error get post // */
 
 /* Home page < nav bar && Profile page < nav bar */
 
@@ -79,4 +56,17 @@ body {
 }
 /* // hover username-nav // */
 
+/* 777777777777777777777777777777777777777777777777777777777777777777777777777777777777 */
 
+.card {
+    box-shadow: 0 15px 15px 1px rgba(255,255,255, 10%);
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 700px;
+    background-color: #18211c !important;
+    color: white !important;
+    border: 1px white solid !important;
+}
+.card:hover {
+    box-shadow: 0 15px 15px 1px rgba(255,255,255, 30%);
+}
