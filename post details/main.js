@@ -24,6 +24,9 @@ function getSpecificPost(id){
         let time = document.getElementById("post-time")
         let comments_count = document.getElementById("comments-count")
         let usernamePageName = document.getElementById("username-page")
+        let comments = post.comments
+        let commentsDiv = document.getElementById("body-comments")
+        console.log(comments)
 
         if (String(post.title) == "null"){
             post.title = ""
@@ -35,6 +38,7 @@ function getSpecificPost(id){
             post.author.profile_image = "https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg"
         }
 
+        // post details
         usernamePageName.innerHTML = `${post.author.name}`
         userAndImg.innerHTML = ` 
             <img class="rounded-circle border border-2" src="${post.author.profile_image}" alt="" style="width: 30px; height: 30px;">
@@ -51,6 +55,35 @@ function getSpecificPost(id){
         let tags = post.tags
         for (tag of tags){
             tagsDiv.innerHTML += `<button style="background-color: gray; color: white; border: none; border-radius: 10px">${tag}</button>`
+        }
+
+        
+
+        // comments details
+        commentsDiv.innerHTML = ``
+        for (comment of comments){
+            if (String(comment.author.profile_image) == "[object Object]"){
+                comment.author.profile_image = "https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg"
+            }
+            commentsDiv.innerHTML += `
+                <div id="mainComments">
+                    <!-- head comment -->
+                    <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                        <div class="img-username">
+                            <img class="rounded-circle border border-2" src="${comment.author.profile_image}" alt="profile image" style="width: 20px; height: 20px;">
+                            <b>@</b>${comment.author.username}
+                        </div>
+                    </div>
+                    <!-- // head comment // -->
+
+                    <!--  comment body -->
+                    <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                        <h6 style="text-align: left; color: aliceblue;">${comment.body}</h6>
+                    </div>
+                    <!-- // comment body // -->
+                </div>
+            `
+        
         }
     })
 }
