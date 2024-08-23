@@ -170,41 +170,361 @@
     
     <!-- post & comments container -->
     <div class="container text-center" style="margin-top: 150px;">
-        <div class="row">
-            <div class="col-7" style="background-color: red;">
-                <div id="mainPost">
-                    <div class="card mb-3">
-                        <div class="card-header" style="border-bottom: 0.1px white solid;">
-                            <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="" style="width: 30px; height: 30px;">
-                            <b>@</b>Hello
-                        </div>
-                        
-                        <div class="img mt-1">
-                            <img src="https://images.tarmeezacademy.com/posts/7qBV10OKTipdMye.jpg" alt="" style="width: 100%; max-height: 2000px; max-width: 2000px;">
-                        </div>
-                        <div class="card-time">
-                            <h6 class="mx-3 mt-2 pt-0" style="color: rgb(155, 155, 155);">5 min ago</h6>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">${post.title}</h3>
-                            <p class="card-text">${post.body}</p>
-                            <hr>
-                        </div>
-                        <div class="container mb-3" style="display: flex; justify-content: space-between;">
+        <div id="post">
+            <div class="row" style="max-height: 800px;">
+                <div class="col-7" style="height: 100%;">
+                    <div id="mainPost">
+                        <div class="card">
+                            <div class="card-header" style="border-bottom: 0.1px white solid; display: flex;">
+                                <div class="img-username">
+                                    <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="" style="width: 30px; height: 30px;">
+                                    <b>@</b>username
+                                </div>
+                            </div>
                             
-                            <div id="post-tags-div${post.id}">
-                                <button style="background-color: gray; color: white; border: none; border-radius: 10px">hello world </button>
+                            <div class="img mt-1">
+                                <img src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="" style="width: 100% !important; max-height: 2000px !important; max-width: 2000px !important;">
+                            </div>
+                            <div class="card-time">
+                                <h6 class="mx-3 mt-2 pt-0" style="color: rgb(155, 155, 155);">5 min ago</h6>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Title</h3>
+                                <p class="card-text">Body</p>
+                                <hr>
+                            </div>
+                            <div class="container mb-3" style="display: flex; justify-content: space-between;">
+                                
+                                <div id="post-tags-div${post.id}">
+                                    <button style="background-color: gray; color: white; border: none; border-radius: 10px">Tags</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col" style="background-color: white;">
-                
-            </div>
-            <div class="col-4" style="background-color: green;">
-                <div id="comments">
 
+                <div class="col">
+                    <div id="comments">
+                        <div id="comments-header" >
+                            <h3 style="margin-top: 5px;">Comments ( <span id="comments-count" style="color: white;">0</span> )</h3>
+                            <hr style="color: white; margin-bottom: 0;">
+                        </div>
+                        <div id="body-comments" style="overflow: scroll; scrollbar-width: none; height: 100%; max-height: 630px;">
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello 1</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+                            
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+    
+                            <div id="mainComments">
+                                <!-- head comment -->
+                                <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
+                                    <div class="img-username">
+                                        <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 20px; height: 20px;">
+                                        <b>@</b>username
+                                    </div>
+                                </div>
+                                <!-- // head comment // -->
+    
+                                <!--  comment body -->
+                                <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
+                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                </div>
+                                <!-- // comment body // -->
+                            </div>
+                        </div>
+
+                        <div id="bottom-comments" style="width: 100%; margin-top: 5px; border-top: 1px gray solid; padding-top: 10px; flex-grow: 1; border-radius: 10px; display: flex; justify-content: center; align-items: center;">
+                            <button style="height: max-content; padding: 10px; background-color: #198754; color: white; margin-left: 10px; border-radius: 20px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                                </svg>
+                            </button>
+                            <textarea name="comment" id="comment-area" style="width: 100%; margin: 0 10px 10px 10px; background-color: #70c79e; padding: 5px;" ></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

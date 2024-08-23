@@ -70,3 +70,32 @@ body {
 .card:hover {
     box-shadow: 0 15px 15px 1px rgba(255,255,255, 30%);
 }
+
+/* comments */
+#comments {
+    background-color: #18211c !important;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 0;
+    border: 1px white solid;
+    border-radius: 10px;
+    scrollbar-width: none;
+    max-height: 800px;
+}
+
+#mainComments {
+    margin-top: 10px;
+}
+.head-comment {
+    color: white;
+}
+
+.head-comment:hover {
+    color: rgb(61, 61, 251);
+    cursor: pointer;
+}
+
+/* // comments // */
