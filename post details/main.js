@@ -1,3 +1,5 @@
+
+
 // delete the col-7 and add col-12 from the post details if the page width less than 768px
 function responsivePostPage() {
     if (window.innerWidth < 768) {
@@ -87,6 +89,47 @@ function getSpecificPost(id){
         }
     })
 }
+
+function createComment(id){
+    let token = localStorage.getItem("token")
+    let comment = document.getElementById("comment-area").value
+    if (comment == ""){
+        let alertSuccess = document.getElementById("alert-sign-log")
+        alertSuccess.classList.remove("alert-success")
+        alertSuccess.classList.add("alert-danger")
+        alertSuccess.innerHTML = `<button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>  Please enter a comment!!`
+        alertSuccess.style.display = "block"
+        setTimeout(()=>{
+            alertSuccess.style.display = "none"
+        }, 10000)
+        return
+    }
+    if (token == null){
+        let alertSuccess = document.getElementById("alert-sign-log")
+        alertSuccess.classList.remove("alert-success")
+        alertSuccess.classList.add("alert-danger")
+        alertSuccess.innerHTML = `<button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>  Please login or signIn first!!`
+        alertSuccess.style.display = "block"
+        setTimeout(()=>{
+            alertSuccess.style.display = "none"
+        }, 10000)
+        return
+    }
+    let formData = new FormData()
+    formData.append("body", comment)
+    axios.post(`https://tarmeezacademy.com/api/v1/posts/${id}/comments`, formData,{
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then((response)=>{
+        getSpecificPost(id)
+    })
+}
+document.getElementById("send-comment").addEventListener("click", ()=>{
+    createComment(id)
+})
 
 responsivePostPage()
 window.addEventListener("resize", responsivePostPage())
