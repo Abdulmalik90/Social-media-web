@@ -14,14 +14,14 @@
     <!-- navBar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #18211c !important; position: fixed; top: 0; z-index: 1000; width: 100%;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html" style="color: #198754;">Niggers Comunity</a>
+            <a class="navbar-brand" href="./../index.html" style="color: #198754;">Niggers Comunity</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #198754;">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.html" style="color: #198754; " id="home-a">Home</a>
+                        <a class="nav-link active" aria-current="page" href="./../index.html" style="color: #198754; " id="home-a">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" style="color: #198754;" id="profile-a">Profile</a>
@@ -170,32 +170,39 @@
     
     <!-- post & comments container -->
     <div class="container text-center" style="margin-top: 150px;">
+        <!-- page title -->
+        
+        <h1 style="margin-bottom: 30px; text-align: left;"><span id="username-page" style="color: #50ce93;">Name</span>'s Post</h1>
+    
+        <!-- // page title // -->
+
         <div id="post">
-            <div class="row" style="max-height: 800px;">
-                <div class="col-7" style="height: 100%;">
+            <div class="row" id="thePostContainer" style="max-height: 800px;">
+                <div class="col-7" id="thePost" style="height: 100%;">
                     <div id="mainPost">
                         <div class="card">
                             <div class="card-header" style="border-bottom: 0.1px white solid; display: flex;">
-                                <div class="img-username">
+                                <div class="img-username" id="img-and-user">
                                     <img class="rounded-circle border border-2" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="" style="width: 30px; height: 30px;">
                                     <b>@</b>username
                                 </div>
                             </div>
                             
-                            <div class="img mt-1">
+                            <div class="img mt-1" id="postImg">
                                 <img src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="" style="width: 100% !important; max-height: 2000px !important; max-width: 2000px !important;">
                             </div>
                             <div class="card-time">
-                                <h6 class="mx-3 mt-2 pt-0" style="color: rgb(155, 155, 155);">5 min ago</h6>
+                                <h6 class="mx-3 mt-2 pt-0" id="post-time" style="color: rgb(155, 155, 155); ">5 min ago</h6>
                             </div>
-                            <div class="card-body">
-                                <h3 class="card-title">Title</h3>
-                                <p class="card-text">Body</p>
+                            <div class="card-body" style="display: flex; flex-direction: column; justify-content: start; align-items: start;">
+                                <h3 class="card-title" id="post-title" style="border-bottom: 1px gray solid; margin-bottom: 9px;">Title</h3>
+                                
+                                <p class="card-text" id="post-body">Body</p>
                                 <hr>
                             </div>
                             <div class="container mb-3" style="display: flex; justify-content: space-between;">
                                 
-                                <div id="post-tags-div${post.id}">
+                                <div id="post-tags-div">
                                     <button style="background-color: gray; color: white; border: none; border-radius: 10px">Tags</button>
                                 </div>
                             </div>
@@ -203,13 +210,13 @@
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col" id="theComments">
                     <div id="comments">
                         <div id="comments-header" >
                             <h3 style="margin-top: 5px;">Comments ( <span id="comments-count" style="color: white;">0</span> )</h3>
                             <hr style="color: white; margin-bottom: 0;">
                         </div>
-                        <div id="body-comments" style="overflow: scroll; scrollbar-width: none; height: 100%; max-height: 630px;">
+                        <div id="body-comments" style="overflow: scroll; scrollbar-width: none; height: 100%; max-height: 730px;">
                             <div id="mainComments">
                                 <!-- head comment -->
                                 <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
@@ -510,7 +517,7 @@
     
                                 <!--  comment body -->
                                 <div class="main-comment" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; border-bottom: 1px white solid;">
-                                    <h6 style="text-align: left; color: aliceblue;">hello</h6>
+                                    <h6 style="text-align: left; color: aliceblue;">hello last</h6>
                                 </div>
                                 <!-- // comment body // -->
                             </div>

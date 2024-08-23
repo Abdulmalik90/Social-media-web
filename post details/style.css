@@ -83,7 +83,13 @@ body {
     border: 1px white solid;
     border-radius: 10px;
     scrollbar-width: none;
-    max-height: 800px;
+    max-height: 900px;
+}
+
+@media (max-width: 991px) {
+    #comments {
+        max-height: 700px;
+    }
 }
 
 #mainComments {
