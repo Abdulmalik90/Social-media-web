@@ -10,8 +10,8 @@ function responsivePostPage() {
     }
 }
 
-const urlParams = new URLSearchParams(window.location.search);
-const id =urlParams.get("id")
+let urlParams = new URLSearchParams(window.location.search);
+let id = urlParams.get("id")
 console.log(id)
 
 function getSpecificPost(id){
@@ -90,43 +90,58 @@ function getSpecificPost(id){
     })
 }
 
-function createComment(id){
-    let token = localStorage.getItem("token")
-    let comment = document.getElementById("comment-area").value
-    if (comment == ""){
-        let alertSuccess = document.getElementById("alert-sign-log")
-        alertSuccess.classList.remove("alert-success")
-        alertSuccess.classList.add("alert-danger")
-        alertSuccess.innerHTML = `<button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>  Please enter a comment!!`
-        alertSuccess.style.display = "block"
-        setTimeout(()=>{
-            alertSuccess.style.display = "none"
-        }, 10000)
-        return
+function createComment(id) {
+    let token = JSON.parse(localStorage.getItem("token"));
+    let comment = document.getElementById("comment-area").value;
+    console.log(token)
+    
+
+    if (comment === "") {
+        displayAlert("Please enter a comment!!", "danger");
+        return;
     }
-    if (token == null){
-        let alertSuccess = document.getElementById("alert-sign-log")
-        alertSuccess.classList.remove("alert-success")
-        alertSuccess.classList.add("alert-danger")
-        alertSuccess.innerHTML = `<button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>  Please login or signIn first!!`
-        alertSuccess.style.display = "block"
-        setTimeout(()=>{
-            alertSuccess.style.display = "none"
-        }, 10000)
-        return
+
+    if (!token) {
+        displayAlert("Please login or sign in first!!", "danger");
+        return;
     }
-    let formData = new FormData()
-    formData.append("body", comment)
-    axios.post(`https://tarmeezacademy.com/api/v1/posts/${id}/comments`, formData,{
+
+    let params = {
+        body: comment
+    };
+
+    axios.post(`https://tarmeezacademy.com/api/v1/posts/${id}/comments`, 
+        {body: comment}, {
         headers: {
-            'Content-Type': 'multipart/form-data',
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`, // 'Bearer' might be needed
+            'Content-Type': 'application/json'
         }
     })
-    .then((response)=>{
-        getSpecificPost(id)
+    .then((response) => {
+        console.log("response: ", response);
+        getSpecificPost(id);
+        document.getElementById("comment-area").value = ""; // Clear the comment area
     })
+    .catch((error) => {
+        console.log("Error: ", error.response);
+        displayAlert("Failed to create comment. Please try again.", "danger");
+    });
 }
+
+function displayAlert(message, type) {
+    let alertSuccess = document.getElementById("alert-sign-log");
+    alertSuccess.classList.remove("alert-success", "alert-danger");
+    alertSuccess.classList.add(`alert-${type}`);
+    alertSuccess.innerHTML = `
+        <button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>
+        ${message}
+    `;
+    alertSuccess.style.display = "block";
+    setTimeout(() => {
+        alertSuccess.style.display = "none";
+    }, 10000);
+}
+
 document.getElementById("send-comment").addEventListener("click", ()=>{
     createComment(id)
 })
