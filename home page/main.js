@@ -29,9 +29,16 @@ function getPosts(reload = true, page = 1){
             
             postsDiv.innerHTML += `
             <div class="card mb-3">
-                <div class="card-header" style="border-bottom: 0.1px white solid;">
-                    <img class="rounded-circle border border-2" src="${post.author.profile_image}" alt="" style="width: 30px; height: 30px;">
-                    <b>@${post.author.username}</b>
+                <div class="card-header" style="border-bottom: 0.1px white solid; display: flex; justify-content: space-between;">
+                        <div>
+                            <img class="rounded-circle border border-2" src="${post.author.profile_image}" alt="" style="width: 30px; height: 30px;">
+                            <b>@${post.author.username}</b>
+                        </div>
+
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#edit-post-modal" Onclick="editPostClicked(${post.id})">Edit</button>
+                    
+                    
+
                 </div>
                 
                 <div class="img mt-1">
@@ -79,6 +86,36 @@ function getPosts(reload = true, page = 1){
             errorPosts.style.display = "none"
         }, 7000)
     })
+}
+
+// edit post button clicked
+function editPostClicked(id){
+    axios.get(`https://tarmeezacademy.com/api/v1/posts/${id}`)
+    .then((response)=>{
+        console.log(response)
+        let post = response.data.data
+        document.getElementById("edit-title").value = `${post.title}`
+        document.getElementById("edit-body").value = `${post.body}`
+    })
+    
+}
+
+
+// edit post
+function editPost(id){
+    let token = JSON.parse(localStorage.getItem("token"));
+    document.getElementById("edit-post-btn").addEventListener("click", ()=>{
+    
+        console.log("clicked")
+        axios.put(`https://tarmeezacademy.com/api/v1/posts/${id}`,
+            {title: document.getElementById("edit-title").value, body: document.getElementById("edit-body").value}, 
+            {headers: {"Authorization": `Bearer ${token}`}})
+        .then((response)=>{
+            let post = response.data.data
+        })
+    })
+    
+
 }
 
 // open comments

@@ -15,7 +15,7 @@
     <!-- navBar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #18211c !important; position: fixed; top: 0; z-index: 1000; width: 100%;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./index.html" style="color: #198754;">Niggers Comunity</a>
+            <a class="navbar-brand" href="./index.html" style="color: #198754;">Social Comunity</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #198754;">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -239,6 +239,46 @@
         </div>
     </div>
     <!-- // create post modal // -->
+
+    <!-- Edit post modal -->
+    <div class="modal fade" id="edit-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <div class="alert alert-danger" role="alert" id="post-alert" style="display: none;">
+                                
+                            </div>
+                        </div>
+
+                        <div class="mb-3" id="edit-post-image">
+
+                        </div>
+                        
+                        
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Title:</label>
+                            <input type="text" class="form-control" id="edit-title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">body:</label>
+                            <textarea class="form-control" id="edit-body"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="edit-post-btn" type="submit" class="btn btn-success">Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // Edit post modal -->
 </body>
 <script src="./home page/main.js"></script>
 <script src="./GeneralSetup.js"></script>
