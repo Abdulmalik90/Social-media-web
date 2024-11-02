@@ -35,7 +35,7 @@ function getPosts(reload = true, page = 1){
                             <b>@${post.author.username}</b>
                         </div>
 
-                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#edit-post-modal" Onclick="editPostClicked(${post.id})">Edit</button>
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#edit-post-modal" Onclick="editPostClicked(${post.id})" id="${post.id}">Edit</button>
                     
                     
 
@@ -90,29 +90,50 @@ function getPosts(reload = true, page = 1){
 
 // edit post button clicked
 function editPostClicked(id){
+    document.getElementById("edit-post-id").innerHTML = String(id)
+    
     axios.get(`https://tarmeezacademy.com/api/v1/posts/${id}`)
     .then((response)=>{
         console.log(response)
         let post = response.data.data
         document.getElementById("edit-title").value = `${post.title}`
         document.getElementById("edit-body").value = `${post.body}`
+        
+        document.getElementById("edit-post-img").src = `${post.image}`
     })
+    
     
 }
 
 
+
 // edit post
-function editPost(id){
+function editPost(){
+    id = document.getElementById("edit-post-id").innerHTML
+    console.log(id)
     let token = JSON.parse(localStorage.getItem("token"));
-    document.getElementById("edit-post-btn").addEventListener("click", ()=>{
-    
-        console.log("clicked")
-        axios.put(`https://tarmeezacademy.com/api/v1/posts/${id}`,
-            {title: document.getElementById("edit-title").value, body: document.getElementById("edit-body").value}, 
-            {headers: {"Authorization": `Bearer ${token}`}})
-        .then((response)=>{
-            let post = response.data.data
-        })
+    axios.put(`https://tarmeezacademy.com/api/v1/posts/${id}`,
+        {title: document.getElementById("edit-title").value, body: document.getElementById("edit-body").value}, 
+        {headers: {"Authorization": `Bearer ${token}`}})
+    .then((response)=>{
+        openComments(id)
+        let editPostModal = document.getElementById("edit-post-modal")
+        const modalInstance = bootstrap.Modal.getInstance(editPostModal)
+        modalInstance.hide()
+    })
+    .catch((error)=>{
+        let alertError = document.getElementById("editPost-alert")
+        if (error.response.status == 401){
+            alertError.innerHTML = `you are not authorized to edit this post!!`
+        } else{
+            alertError.innerHTML = `Error (${error})`
+        }
+        
+        alertError.style.display = "block"
+        
+        setTimeout(()=>{
+            alertError.style.display = "none"
+        }, 10000)
     })
     
 
@@ -336,13 +357,13 @@ function logIn(username, password){
         console.log(response)
         let token = response.data.token
 
-        let logInModal = document.getElementById("loginModal")
-
+        
         localStorage.setItem("token", JSON.stringify(token))
         localStorage.setItem("user", JSON.stringify(response.data.user))
-
+        
         setupUI()
-
+        
+        let logInModal = document.getElementById("loginModal")
         const modalInstance = bootstrap.Modal.getInstance(logInModal)
         modalInstance.hide()
 
