@@ -184,10 +184,10 @@ function deletePost(){
         .then((response)=>{
             let id = response.data.data.author.id
             console.log(id)
+            location.reload();
             let editPostModal = document.getElementById("edit-post-modal")
             const modalInstance = bootstrap.Modal.getInstance(editPostModal)
             modalInstance.hide()
-            getUserPosts(`${id}`)
         })
         .catch((error)=>{
             let alertError = document.getElementById("editPost-alert")

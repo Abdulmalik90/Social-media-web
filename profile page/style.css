@@ -56,3 +56,36 @@ body {
 .card:hover {
     box-shadow: 0 15px 15px 1px rgba(255,255,255, 30%);
 }
+
+@media (max-width: 530px) {
+    #post-h3, #comments-h3 {
+        font-size: 20px !important;
+    }
+
+    #postsValue, #commentsValue {
+        font-size: 15px !important;
+    }
+
+    #userImage {
+        height: 50px !important;
+        width: 50px !important;
+    }
+
+    .userName-h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 400px) {
+    #user-card-flex {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #user-card-flex div {
+        width: max-content;
+        margin-top: 10px !important;
+    }
+    
+}
