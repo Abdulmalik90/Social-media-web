@@ -155,6 +155,36 @@ function editPost(){
 
 }
 
+function deletePost(){
+    id = document.getElementById("edit-post-id").innerHTML
+    if(confirm("Are you sure you want to delete this post?")){
+
+        axios.delete(`https://tarmeezacademy.com/api/v1/posts/${id}`,{
+            headers: {"Authorization": `Bearer ${JSON.parse(localStorage.getItem("token"))}`}
+        })
+        .then((response)=>{
+            
+            let editPostModal = document.getElementById("edit-post-modal")
+            const modalInstance = bootstrap.Modal.getInstance(editPostModal)
+            modalInstance.hide()
+            getPosts()
+        })
+        .catch((error)=>{
+            let alertError = document.getElementById("editPost-alert")
+            alertError.innerHTML = `Error (${error})`
+            
+            alertError.style.display = "block"
+            
+            setTimeout(()=>{
+                alertError.style.display = "none"
+            }, 10000)
+        })
+    } else{
+        return
+    }
+
+}
+
 // open comments
 function openComments(id){
     window.location = "./../post details/index.html?id=" + String(id)
