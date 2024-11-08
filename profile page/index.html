@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./../node_modules/axios/dist/axios.min.js"></script>
+    <title>Profile</title>
+</head>
+<body>
+
+    <!-- navBar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #18211c !important; position: fixed; top: 0; z-index: 1000; width: 100%;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./../index.html" style="color: #198754;">Social Comunity</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #198754;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./../index.html" style="color: #198754; " id="home-a">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" style="color: #198754;" id="profile-a">Profile</a>
+                    </li>
+                </ul>
+                <div class="container" id="sign-btns-cont" style="display: flex; justify-content: end;">
+                    <div id="user-div" style="margin-right: 20px; display: none;">
+                        <a style="cursor: pointer;">
+                            <img src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" id="profile-img" alt="profile image" style="width: 40px; height: 40px; border-radius: 50px; border: 1px #198754 solid;">
+                            <b style="font-size: 20px; color: rgb(178, 178, 178);">@</b><span style="font-size: 20px;" id="username-nav">username</span>
+                        </a>
+                    </div>
+                    <button type="button" class="btn btn-outline-success mx-3" id="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
+        
+                    <button type="button" id="signin-btn-header" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signInModule">Sign in</button>
+
+                    <button type="button" id="logout-btn-header" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#logout-modal">Log out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- // navBar // -->
+
+    <!-- Success alert -->
+    <div style=" position: fixed; z-index: 1000; width: 100%; display: flex; bottom:20px;">
+        
+        <div id="alert-sign-log" class="alert alert-success" role="alert" style="margin: 10px auto; width: 80%; display: none;" >
+            
+        </div>
+        
+    </div>
+    <!-- // Success alert // -->
+
+    <!-- log in model -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">log in</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <div class="alert alert-danger" role="alert" id="login-alert">
+                                
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Usernam:</label>
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col" style="margin: 0; padding: 0; width: max-content !important; background-color: aliceblue; border-radius: 10px;"><p style="text-align: center; margin: 8px; color: black;">@</p></div>
+                                    <div class="col-10"><input class="form-control" id="usernam-input-login" minlength="3" maxlength="13" required style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Password:</label>
+                            <input class="form-control" id="password-input-login" type="password" required>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="login-button">log in</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // log in modul // -->
+
+    <!-- sign in modul -->
+    <div class="modal fade" id="signInModule" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sign in</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <div class="alert alert-danger" role="alert" id="signin-alert">
+                                
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Email:</label>
+                            <input type="email" class="form-control" id="email-input-signin" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Usernam:</label>
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col" style="margin: 0; padding: 0; width: max-content !important; background-color: aliceblue; border-radius: 10px;"><p style="text-align: center; margin: 8px; color: black;">@</p></div>
+                                    <div class="col-10"><input class="form-control" id="usernam-input-signin" minlength="3" maxlength="13" required style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Password:</label>
+                            <input class="form-control" id="password-input-signin" type="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Name:</label>
+                            <input class="form-control" id="name-input-signin" minlength="2" maxlength="22" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profile-img-input" class="form-label">Profile image:<span style="font-size: 13px; color: red; margin-left: 5px; padding: 5px; background-color: yellow; border-radius: 20px;">(less than 800kb)</span></label>
+                            <input class="form-control" type="file" id="profile-img-input" accept=".jpg, .jpeg, .png">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="signin-btn">sign in</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // sign in modul // -->
+
+    <!-- log out modal -->
+    <div class="modal fade" id="logout-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Log out</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to log out?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="confirmation-logout">Log out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // log out modal // -->
+
+    <!-- profile -->
+    <div class="container" id="profile-container">
+
+        <h2><span id="nameOfUser"></span>'s Profile</h2>
+
+        
+        <div id="user-info-card">
+
+            <div id="user-card-flex">
+                <div>
+                    <img id="userImage" src="https://images.tarmeezacademy.com/users/7qBV10OKTipdMye.jpg" alt="profile image" style="width: 100px; height: 100px; border-radius: 50px; border: rgb(0, 120, 14) solid 3px;">
+                    <h3 class="userName-h3" style="color: rgb(38, 126, 242);">@</h3><h3 class="userName-h3" id="userName-h3" style="color: white;">Username</h3>
+                </div>
+    
+                <div>
+                    <h3>Posts</h3>
+                    <h5 id="postsValue">0</h5>
+                </div>
+    
+                <div>
+                    <h3>Comments</h3>
+                    <h5 id="commentsValue">0</h5>
+                </div>
+            </div>
+            <hr style="color: aliceblue;">
+            
+            <!-- user posts -->
+            <div id="post-container" class="container">
+                <h2>Posts</h2>
+                <div id="posts-flex-container">
+                    <div class="alert alert-danger" role="alert" id="error-get-post">
+                    </div>
+                </div>
+            </div>
+            <!-- // user posts // -->
+            
+        </div>
+
+
+
+    </div>
+    <!-- // profile // -->
+    <!-- Edit post modal -->
+    <div class="modal fade" id="edit-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" style="display: inline;" id="exampleModalLabel">Edit <span id="name-edit-post"></span>'s Post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <span id="edit-post-id" style="display: none;"></span>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="alert alert-danger" role="alert" id="editPost-alert" style="display: none;">
+                                
+                        </div>
+                    </div>
+                    <form>
+                        <div class="mb-3">
+                            <div class="alert alert-danger" role="alert" id="post-alert" style="display: none;">
+                                
+                            </div>
+                        </div>
+
+                        <div class="mb-3" id="edit-post-image">
+                            <img src="" alt="" width="100%" id="edit-post-img">
+                        </div>
+                        
+                        
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Title:</label>
+                            <input type="text" class="form-control" id="edit-title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">body:</label>
+                            <textarea class="form-control" id="edit-body"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="edit-post-btn" type="submit" class="btn btn-success" onclick="editPost()">Post</button>
+                    <button id="delete-post-btn" type="submit" class="btn btn-danger" onclick="deletePost()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // Edit post modal -->
+    
+
+</body>
+<script src="./profile.js"></script>
+<script src="./../GeneralSetup.js"></script>
+</html>

@@ -278,5 +278,7 @@ function getCurrentUser(){
     return user
 }
 
+
+
 setupUI()
 

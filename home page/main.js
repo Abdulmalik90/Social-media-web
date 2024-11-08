@@ -48,7 +48,7 @@ function getPosts(reload = true, page = 1){
             postsDiv.innerHTML += `
             <div class="card mb-3">
                 <div class="card-header" style="border-bottom: 0.1px white solid; display: flex; justify-content: space-between;">
-                        <div>
+                        <div onclick="openProfile(${post.author.id})" style="cursor: pointer;" id="user-div-info">
                             <img class="rounded-circle border border-2" src="${post.author.profile_image}" alt="" style="width: 30px; height: 30px;">
                             <b>@${post.author.username}</b>
                         </div>
@@ -188,6 +188,10 @@ function deletePost(){
 // open comments
 function openComments(id){
     window.location = "./../post details/index.html?id=" + String(id)
+}
+
+function openProfile(id){
+    window.location = "./../profile page/index.html?id=" + String(id)
 }
 
 // create a new post
