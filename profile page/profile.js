@@ -1,3 +1,7 @@
+let data = localStorage.getItem("user")
+let data2 = JSON.parse(data)
+let logedInId = data2.id
+
 let urlParams = new URLSearchParams(window.location.search);
 let id = urlParams.get("id")
 console.log(id)
@@ -7,7 +11,6 @@ function getSpecificUser(id) {
     axios.get(`https://tarmeezacademy.com/api/v1/users/${id}`)
     .then((response)=>{
         let user = response.data.data
-        
 
         let nameOfUser = document.getElementById("nameOfUser")
         nameOfUser.innerHTML = `${user.name}`
@@ -27,7 +30,11 @@ function getSpecificUser(id) {
         
         let commentsValue = document.getElementById("commentsValue")
         commentsValue.innerHTML = `${user.comments_count}`
-
+        if (logedInId == id){
+            document.getElementById("setting-profile-btn").style.display = "block"
+        } else {
+            document.getElementById("setting-profile-btn").style.display = "none"
+        }
     })
 }
 
@@ -208,6 +215,8 @@ function deletePost(){
 function openComments(id){
     window.location = "./../post details/index.html?id=" + String(id)
 }
+
+
 
 getSpecificUser(id)
 getUserPosts(id)

@@ -260,6 +260,7 @@ logoutBtn.addEventListener("click", ()=>{
         alertSuccess.classList.add("alert-danger")
         alertSuccess.innerHTML = `<button type="button" id="close-alert" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>  You have successfully logged out!!`
         alertSuccess.style.display = "block"
+        location.reload();
         setTimeout(()=>{
             alertSuccess.style.display = "none"
         }, 10000)

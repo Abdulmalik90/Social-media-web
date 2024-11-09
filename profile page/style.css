@@ -89,3 +89,7 @@ body {
     }
     
 }
+
+#setting-profile-btn:hover {
+    color: white;
+}
