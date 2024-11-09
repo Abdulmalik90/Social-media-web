@@ -598,6 +598,12 @@ function refreshPosts(page){
 }
 
 
+document.getElementById("profile-a").addEventListener("click", ()=>{
+    let value = localStorage.getItem("user")
+    let data = JSON.parse(value)
+    openProfile(data.id)
+})
+
 let page = 1
 let lastPage = 1
 getPosts(true, 1)

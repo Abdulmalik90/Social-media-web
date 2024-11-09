@@ -42,6 +42,7 @@ function getSpecificPost(id){
 
         // post details
         usernamePageName.innerHTML = `${post.author.name}`
+        userAndImg.onclick = function () { window.location.href = `../profile page/index.html?id=${post.author.id}`}
         userAndImg.innerHTML = ` 
             <img class="rounded-circle border border-2" src="${post.author.profile_image}" alt="" style="width: 30px; height: 30px;">
             <b>@</b>${post.author.username}
@@ -71,7 +72,7 @@ function getSpecificPost(id){
                 <div id="mainComments">
                     <!-- head comment -->
                     <div class="head-comment" style="display: flex; margin-left: 10px; margin-right: 10px; font-size: 12px;">
-                        <div class="img-username">
+                        <div class="img-username" onclick="window.location.href = '../profile page/index.html?id=${comment.author.id}'" style="cursor: pointer;">
                             <img class="rounded-circle border border-2" src="${comment.author.profile_image}" alt="profile image" style="width: 20px; height: 20px;">
                             <b>@</b>${comment.author.username}
                         </div>
