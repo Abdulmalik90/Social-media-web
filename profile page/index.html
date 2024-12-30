@@ -175,7 +175,7 @@
 
         
         <div id="user-info-card">
-            <svg id="setting-profile-btn" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16" style="float: right; margin-right: 10px; margin-bottom: 20px !important; cursor: pointer; display:none;">
+            <svg onclick="clickEditProfile()" id="setting-profile-btn" data-bs-toggle="modal" data-bs-target="#edit-profile-modal" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16" style="float: right; margin-right: 10px; margin-bottom: 20px !important; cursor: pointer; display:none;">
                 <path style="margin-right: 10px; margin-bottom: 20px !important;" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
             </svg>
             
@@ -259,6 +259,52 @@
         </div>
     </div>
     <!-- // Edit post modal -->
+
+    <!-- Edit profile modal -->
+    <div class="modal fade" id="edit-profile-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" style="display: inline;" id="exampleModalLabel">Edit <span id="name-edit-profile"></span>'s Information</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <span id="edit-post-id" style="display: none;"></span>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="alert alert-danger" role="alert" id="editPost-alert" style="display: none;">
+                                
+                        </div>
+                    </div>
+                    <form>
+                        <div class="mb-3">
+                            <div class="alert alert-danger" role="alert" id="post-alert" style="display: none;">
+                                
+                            </div>
+                        </div>
+
+                        <div class="mb-3" id="edit-post-image">
+                            <img src="" alt="" width="100%" id="edit-post-img">
+                        </div>
+                        
+                        
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Username:</label>
+                            <input type="text" class="form-control" id="edit-username" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Name:</label>
+                            <input class="form-control" id="edit-name" type="text" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="edit-post-btn" type="submit" class="btn btn-success">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // Edit profile modal -->
     
 
 </body>

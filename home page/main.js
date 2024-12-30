@@ -610,7 +610,7 @@ getPosts(true, 1)
 
 window.addEventListener("scroll", ()=>{
     
-    const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+    const endOfPage = window.innerHeight + window.pageYOffset >= document.body.scrollHeight;
     if (endOfPage && page < lastPage){
         page = page + 1
         console.log(page)

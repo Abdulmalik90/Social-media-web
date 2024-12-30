@@ -132,6 +132,13 @@ function getUserPosts(id){
     })
 }
 
+function clickEditProfile(){
+    id = logedInId
+    document.getElementById("name-edit-profile").innerHTML = `${data2.name}`
+    document.getElementById("edit-username").value = `${data2.username}`
+    document.getElementById("edit-name").value = `${data2.name}`
+    console.log(data2)
+}
 // edit post button clicked
 function editPostClicked(postObject){
     
