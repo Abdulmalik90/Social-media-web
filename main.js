@@ -11,7 +11,7 @@ function getCurrentUser(){
 
 // get posts
 function getPosts(reload = true, page = 1){
-    axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=6&page=${page}`)
+    axios.get(`https://tarmeezacademy.com/api/v1/posts?limit=3&page=${page}`)
     .then((response)=>{
         let posts = response.data.data
         lastPage = response.data.meta.last_page
